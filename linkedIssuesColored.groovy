@@ -7,10 +7,11 @@ COLORIZE_VARIANT = COLORIZE_BY_STYLE
 
 def issueLinkManager = componentManager.getIssueLinkManager()
 def valueList = issueLinkManager.getOutwardLinks(issue.id)*.getDestinationObject()*.getKey()
-
+valueList += issueLinkManager.getInwardLinks(issue.id)*.getDestinationObject()*.getKey()
+def valueSet = valueList.toSet()
 /** -------------------- GENERATE HTML --------------------**/
 def result = ""
-valueList.each{
+valueSet.each{
     result += getHTML(it)
 }
 return result
