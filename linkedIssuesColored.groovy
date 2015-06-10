@@ -10,7 +10,7 @@ def valueList = issueLinkManager.getOutwardLinks(issue.id)
 valueList += issueLinkManager.getInwardLinks(issue.id)
 
 // uncomment for filtering
-//valueList = valueList.findAll{it.getIssueLinkType().getName().equals("foo")}
+//valueList = valueList.findAll{it.getIssueLinkType().getName().equals("Blocked")}
 valueList = valueList*.getDestinationObject()*.getKey()
 
 def valueSet = valueList.toSet()
